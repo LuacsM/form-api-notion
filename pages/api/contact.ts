@@ -48,5 +48,5 @@ export default async function handler(
   }).catch((error) => {
     console.log(error)
     res.status(500).json({ message: 'Ops, algo deu errado!' })
-  })
+  })  
 }

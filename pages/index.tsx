@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 
+const { Client } = require('@notionhq/client');
+
 interface Data {
   name: string;
   email: string;
@@ -14,6 +16,7 @@ export default function Home() {
     message: '',
     name: '',
   });
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -32,13 +35,15 @@ export default function Home() {
       })
   };
 
+  
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={submitForm}>
-        <h1 className={styles.title}>Contact Form With Nextjs + Notion</h1>
+        <h1 className={styles.title}>Formulário de Contatos</h1>
         <div className={styles.inputs}>
           <div>
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="name">Nome Completo</label>
             <input
               type="text"
               id="name"
@@ -49,12 +54,14 @@ export default function Home() {
               required
             />
           </div>
-          <div>
-            <label htmlFor="email">E-Mail Address</label>
+        </div>
+        <div className={styles.inputs}>
+        <div>
+            <label htmlFor="email">E-Mail</label>
             <input
               type="email"
               name="email"
-              placeholder="johndoe@example.io"
+              placeholder="fulano@exemplo.com"
               value={data.email}
               onChange={handleChange}
               required
@@ -62,7 +69,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <label htmlFor="message">Message</label>
+          <label htmlFor="message">Mensagem</label>
           <textarea
             name="message"
             id="message"
@@ -74,7 +81,7 @@ export default function Home() {
           />
         </div>
         <button className={styles.btn} type="submit">
-          Submit
+          Enviar
         </button>
       </form>
     </div>
